@@ -41,7 +41,7 @@ module.exports = grammar({
       $.boolean,
       $.atom,
     ),
-    boolean: _ => 
+    boolean: _ =>
       choice(seq("#", /[tf]/))
   },
 });

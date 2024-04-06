@@ -2,47 +2,38 @@
 import PackageDescription
 
 let package = Package(
-    name: "TreeSitterUtlc",
+    name: "TreeSitterRust",
     platforms: [.macOS(.v10_13), .iOS(.v11)],
     products: [
-        .library(name: "TreeSitterUtlc", targets: ["TreeSitterUtlc"]),
+        .library(name: "TreeSitterRust", targets: ["TreeSitterRust"]),
     ],
     dependencies: [],
     targets: [
-        .target(name: "TreeSitterUtlc",
+        .target(name: "TreeSitterRust",
                 path: ".",
                 exclude: [
-                    "Cargo.toml",
-                    "Makefile",
                     "binding.gyp",
-                    "bindings/c",
-                    "bindings/go",
-                    "bindings/node",
-                    "bindings/python",
-                    "bindings/rust",
-                    "prebuilds",
-                    "grammar.js",
-                    "package.json",
-                    "package-lock.json",
-                    "pyproject.toml",
-                    "setup.py",
-                    "test",
+                    "bindings",
+                    "Cargo.toml",
+                    "corpus",
                     "examples",
-                    ".editorconfig",
-                    ".github",
-                    ".gitignore",
-                    ".gitattributes",
-                    ".gitmodules",
+                    "grammar.js",
+                    "LICENSE",
+                    "Makefile",
+                    "package.json",
+                    "README.md",
+                    "script",
+                    "src/grammar.json",
+                    "src/node-types.json",
                 ],
                 sources: [
                     "src/parser.c",
-                    // NOTE: if your language has an external scanner, add it here.
+                    "src/scanner.c",
                 ],
                 resources: [
                     .copy("queries")
                 ],
                 publicHeadersPath: "bindings/swift",
                 cSettings: [.headerSearchPath("src")])
-    ],
-    cLanguageStandard: .c11
+    ]
 )

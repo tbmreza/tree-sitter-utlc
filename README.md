@@ -2,7 +2,7 @@ Tree-sitter grammar for utlc: a subset of Scheme that's [restricted](https://sit
 
 ## Status
 
-work in progress please look away
+Work in progress. Repository used tree-sitter-rust as scaffold, so maybe look at that instead.
 
 ## Developing the grammar
 
@@ -12,7 +12,7 @@ My experience using npm:
 - `tree-sitter generate` can only run once; you have to `npm init` all over again if you decide that you have changes to `grammar.js`. This is a bug because docs says otherwise.
 
 ```
-# edit grammar.js
+# edit rules at grammar.js
 tree-sitter generate
 tree-sitter parse example-file
 ```

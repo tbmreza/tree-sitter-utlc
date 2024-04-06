@@ -1,16 +1,12 @@
 {
   "name": "tree-sitter-utlc",
-  "version": "0.0.1",
+  "version": "0.20.4",
   "description": "Tree-sitter grammar for utlc: a subset of Scheme that's restricted, but enough to facilitate programming in the untyped lambda-calculus.",
-  "repository": "github:tree-sitter/tree-sitter-utlc",
-  "license": "MIT",
   "main": "bindings/node",
   "types": "bindings/node",
   "keywords": [
-    "incremental",
-    "parsing",
-    "tree-sitter",
-    "utlc"
+    "parser",
+    "rust"
   ],
   "files": [
     "grammar.js",
@@ -20,34 +16,56 @@
     "queries/*",
     "src/**"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tree-sitter/tree-sitter-rust.git"
+  },
+  "author": "Maxim Sokolov <maxim0xff@gmail.com> (https://github.com/MaximSokolov)",
+  "license": "MIT",
   "dependencies": {
     "node-addon-api": "^7.1.0",
     "node-gyp-build": "^4.8.0"
-  },
-  "devDependencies": {
-    "prebuildify": "^6.0.0",
-    "tree-sitter-cli": "^0.22.2"
   },
   "peerDependencies": {
     "tree-sitter": "^0.21.0"
   },
   "peerDependenciesMeta": {
-    "tree-sitter": {
+    "tree_sitter": {
       "optional": true
     }
   },
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "eslint-config-google": "^0.14.0",
+    "tree-sitter-cli": "^0.20.8",
+    "prebuildify": "^6.0.0"
+  },
   "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "build-wasm": "tree-sitter build-wasm",
+    "lint": "eslint grammar.js",
+    "parse": "tree-sitter parse",
+    "test": "tree-sitter test && script/parse-examples",
+    "test-windows": "tree-sitter test",
     "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip",
-    "build": "tree-sitter generate --no-bindings",
-    "build-wasm": "tree-sitter build --wasm",
-    "test": "tree-sitter test",
-    "parse": "tree-sitter parse"
+    "prebuildify": "prebuildify --napi --strip"
   },
   "tree-sitter": [
     {
-      "scope": "source.utlc",
-      "injection-regex": "^utlc$"
+      "scope": "source.rust",
+      "injection-regex": "rust",
+      "file-types": [
+        "rs"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injections": [
+        "queries/injections.scm"
+      ],
+      "tags": [
+        "queries/tags.scm"
+      ]
     }
   ]
 }

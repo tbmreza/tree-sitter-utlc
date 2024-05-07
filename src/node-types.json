@@ -1,6 +1,6 @@
 [
   {
-    "type": "boolean",
+    "type": "bool",
     "named": true,
     "fields": {}
   },
@@ -17,7 +17,30 @@
           "named": true
         },
         {
-          "type": "boolean",
+          "type": "bool",
+          "named": true
+        },
+        {
+          "type": "lambda",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lambda",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "atom",
+          "named": true
+        },
+        {
+          "type": "datum",
           "named": true
         }
       ]
@@ -32,7 +55,7 @@
       "required": false,
       "types": [
         {
-          "type": "datum",
+          "type": "atom",
           "named": true
         },
         {
@@ -43,7 +66,7 @@
     }
   },
   {
-    "type": "sexp",
+    "type": "utlc",
     "named": true,
     "fields": {},
     "children": {
@@ -76,5 +99,9 @@
   {
     "type": "atom",
     "named": true
+  },
+  {
+    "type": "lambda",
+    "named": false
   }
 ]

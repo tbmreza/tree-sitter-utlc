@@ -25,6 +25,6 @@ tree-sitter test  # reads test/corpus/*
 ### Simple usage
 ```
 # edit rules at grammar.js
-tree-sitter generate
+tree-sitter generate  # expect modifications at src/grammar.json
 tree-sitter parse example-file
 ```

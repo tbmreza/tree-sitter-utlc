@@ -52,10 +52,11 @@
   },
   "tree-sitter": [
     {
-      "scope": "source.rust",
-      "injection-regex": "rust",
+      "scope": "source.utlc",
+      "injection-regex": "utlc",
       "file-types": [
-        "rs"
+        "utlc",
+        "scm"
       ],
       "highlights": [
         "queries/highlights.scm"

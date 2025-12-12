@@ -1,7 +1,14 @@
 {
   "name": "utlc",
   "rules": {
-    "utlc": {
+    "sexp": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_element"
+      }
+    },
+    "_element": {
       "type": "CHOICE",
       "members": [
         {
@@ -16,7 +23,7 @@
     },
     "atom": {
       "type": "PATTERN",
-      "value": "[_@a-zA-Z0-9\\xC0-\\xD6\\xD8-\\xDE\\xDF-\\xF6\\xF8-\\xFF:-]+"
+      "value": "[^\\s()\\[\\]#]+"
     },
     "bool": {
       "type": "SEQ",
@@ -41,21 +48,8 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "PREC",
-                "value": 100,
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "atom"
-                }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "list"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_element"
           }
         },
         {
@@ -111,7 +105,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "datum"
+          "name": "_element"
         },
         {
           "type": "STRING",

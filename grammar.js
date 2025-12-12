@@ -12,25 +12,25 @@ module.exports = grammar({
   name: "utlc",
 
   rules: {
-    utlc: ($) => choice($.datum, $.list),
+    sexp: ($) => repeat($._element),
+
+    _element: ($) => choice($.datum, $.list),
 
     // Atoms are space-delimited words that can contain the following characters.
-    atom: _ => /[_@a-zA-Z0-9\xC0-\xD6\xD8-\xDE\xDF-\xF6\xF8-\xFF:-]+/,
+    // Modified to be more permissive for Scheme-like atoms, including +, -, numbers.
+    atom: _ => /[^\s()\[\]#]+/,
 
     bool: _ => seq("#", /[tf]/),
 
-    list: ($) => surround(repeat(choice(PREC.first($.atom), $.list))),
+    list: ($) => surround(repeat($._element)),
 
     datum: ($) => choice(
       $.bool,
       $.atom,
       $.lambda,
-      // $.appl,
     ),
 
-    // x is an atom
-    // (e1 ...en) is a list
-    // (lambda (x) x)
-    lambda: ($) => surround("lambda", surround($.atom), $.datum),
+    // (lambda (x) body)
+    lambda: ($) => surround("lambda", surround($.atom), $._element),
   },
 });
